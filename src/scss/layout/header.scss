@@ -1,0 +1,15 @@
+.header {
+  &__container {
+    height: 90px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.navbar {
+  &__logo {
+    font-size: 30px;
+    font-weight: 900;
+    color: #333;
+  }
+}

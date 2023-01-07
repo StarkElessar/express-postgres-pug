@@ -3,10 +3,12 @@
   margin: 0;
   box-sizing: border-box;
 }
-
 html,
 body {
   width: 100%;
   height: 100%;
-  background-color: red;
+  color: #333;
+  font-size: $fontSize;
+  font-family: $fontFamily;
+  font-weight: 900;
 }
