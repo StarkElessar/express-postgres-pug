@@ -1,5 +1,10 @@
+/**
+ * Load environment variables from .env file,
+ * where API keys and passwords are configured.
+ */
+require('dotenv').config()
+
 const path = require('path')
-const dotenv = require('dotenv')
 const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
