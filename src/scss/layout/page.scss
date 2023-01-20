@@ -1,0 +1,46 @@
+.page {
+  &__container {
+    
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    max-width: 400px;
+  }
+  &__input {
+    padding: 4px 8px;
+
+  }
+  &__button {
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    background-color: #111;
+    color: #fff;
+    transition: .3s ease-in-out;
+    border-radius: 3px;
+    &:hover {
+      background-color: blue;
+    }
+  }
+  &__message {
+    display: none;
+    font-size: 21px;
+    text-align: center;
+    color: red;
+  }
+  // .page__link
+  &__link {
+    display: inline-block;
+    margin-top: 20px;
+  }
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+
+  margin-bottom: 30px;
+}
