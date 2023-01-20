@@ -1,8 +1,7 @@
 const { Router } = require('express')
-const appController = require('../controllers/appController')
-
+const userRouter = require('./userRouter')
 const router = new Router()
 
-router.get('/', appController.getIndexPage)
+router.use('/user', userRouter)
 
 module.exports = router
