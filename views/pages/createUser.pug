@@ -1,0 +1,17 @@
+doctype html
+html(lang="ru")
+  include ../partials/head
+  body
+    .wrapper 
+      include ../partials/header
+      main.page 
+        .page__container 
+          form.page__form#formCreate 
+            input(type="text", name="login", placeholder="Введите логин").page__input
+            input(type="email", name="email", placeholder="Введите почту").page__input
+            input(type="password", name="password", placeholder="Введите пароль").page__input
+            button(type="submit").page__button Создать
+            p.page__message
+
+          a.page__link(href="/app/users") Посмотреть список всех пользователей
+      include ../partials/footer

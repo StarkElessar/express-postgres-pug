@@ -1,0 +1,31 @@
+doctype html
+html(lang="ru")
+  include ../partials/head
+  body
+    .wrapper 
+      include ../partials/header
+      main.page 
+        .page__container 
+          h1.page__title Список всех пользователей
+
+          each user in users
+            .block
+              p id: #{user.id}
+              p login: #{user.login}
+              p email: #{user.email}
+              p активирован: #{user.isActivated ? 'да' : 'нет'}
+              p статус: #{user.isAdmin ? 'администратор' : 'простой пользователь'}
+              p.date(data-time) дата создания: #{user.createdAt}
+
+      include ../partials/footer
+
+      script.
+        const dates = document.querySelectorAll('[data-time]')
+
+        dates.forEach((date) => {
+          const dateArr = date.innerText.split(' ')
+          const [month, day, year, time] = dateArr.slice(3, 7)
+
+          date.innerText = `дата создания: ${day} ${month} ${year} at ${time}`
+        })
+
