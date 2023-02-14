@@ -1,8 +1,8 @@
-const path = require('path')
-const webpack = require('webpack')
+import path from 'path'
+import webpack from 'webpack'
+import { CleanWebpackPlugin } from 'clean-webpack-plugin'
+import MiniCss from 'mini-css-extract-plugin'
 //const FileManagerPlugin = require('filemanager-webpack-plugin')
-const { CleanWebpackPlugin }  = require('clean-webpack-plugin')
-const MiniCss = require('mini-css-extract-plugin')
 
 const isProd = process.env.NODE_ENV === 'production'
 const isDev = !isProd
@@ -12,7 +12,7 @@ const routes = {
   public: path.resolve('public'),
 }
 
-module.exports = {
+export const webpackConfig = {
   mode: 'development',
 
   entry: [
@@ -61,6 +61,14 @@ module.exports = {
         } 
       },
     ],
+  },
+
+  resolve: {
+    extensions: ['.js', '.mjs'],
+  },
+
+  experiments: {
+    outputModule: true,
   },
 
   plugins: [

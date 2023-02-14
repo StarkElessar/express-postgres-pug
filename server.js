@@ -1,25 +1,26 @@
+import dotenv from 'dotenv'
+import path from 'path'
+import { fileURLToPath } from 'url'
+import webpack from 'webpack'
+import webpackDevMiddleware from 'webpack-dev-middleware'
+import webpackHotMiddleware from 'webpack-hot-middleware'
+import { webpackConfig } from './webpack.config.js'
+
+import express from 'express'
+import cors from 'cors'
+import cookieParser from 'cookie-parser'
+import router from './routes/index.js'
+import sequelize from './dp.js'
+import { User } from './models/index.js'
+import errorHandler from './middlewares/errorHandlingMiddleware.js'
 /**
  * Load environment variables from .env file,
  * where API keys and passwords are configured.
  */
-require('dotenv').config()
-
-const path = require('path')
-const webpack = require('webpack')
-const webpackDevMiddleware = require('webpack-dev-middleware')
-const webpackHotMiddleware = require('webpack-hot-middleware')
-const webpackConfig = require('./webpack.config')
+dotenv.config()
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 const compiler = webpack(webpackConfig)
-
-const express = require('express')
-const cors = require('cors')
-const cookieParser = require('cookie-parser')
-const router = require('./routes')
-const appRouter = require('./routes/appRouter')
-const sequelize = require('./dp')
-const models = require('./models')
-const errorHandler = require('./middlewares/errorHandlingMiddleware')
-
 const PORT = process.env.PORT || 3030
 /**
  * Create Express server.
@@ -32,8 +33,14 @@ app.set('views', path.join(__dirname, 'views'))
  * Webpack Hot Reload configuration.
  */
 if (process.env.NODE_ENV) {
-  app.use(webpackDevMiddleware(compiler, { publicPath: webpackConfig.output.publicPath, }))
-  app.use(webpackHotMiddleware(compiler, { log: false, path: '/__webpack_hmr' }))
+  app.use(
+    webpackDevMiddleware(compiler, {
+      publicPath: webpackConfig.output.publicPath,
+    })
+  )
+  app.use(
+    webpackHotMiddleware(compiler, { log: false, path: '/__webpack_hmr' })
+  )
 }
 /**
  * Express configuration.
@@ -43,8 +50,7 @@ app.use(cookieParser())
 app.use(cors({ credentials: true, origin: '*' }))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.static(path.join(__dirname, 'static')))
-app.use('/api', router)
-app.use('/app', appRouter)
+app.use('/', router)
 app.use(errorHandler)
 /**
  * Start Express server.
@@ -52,7 +58,7 @@ app.use(errorHandler)
 const startServer = async () => {
   try {
     await sequelize.authenticate()
-    await sequelize.sync({force: false})
+    await sequelize.sync({ force: false })
 
     app.listen(PORT, () => {
       console.log('=-------------------------------------------=')

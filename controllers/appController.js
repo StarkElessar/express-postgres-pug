@@ -1,4 +1,4 @@
-const { User } = require('./../models')
+import { User } from './../models/index.js'
 
 class AppController {
   getIndexPage(req, res) {
@@ -23,4 +23,4 @@ class AppController {
   }
 }
 
-module.exports = new AppController()
+export default new AppController()

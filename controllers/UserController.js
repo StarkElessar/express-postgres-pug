@@ -1,7 +1,7 @@
-const bcrypt = require('bcrypt')
-const ApiError = require('./../services/ApiError')
-const { User } = require('./../models')
-const generateJwt = require('./../services/generateJwt')
+import bcrypt from 'bcrypt'
+import ApiError from './../services/ApiError.js'
+import generateJwt from './../services/generateJwt.js'
+import { User } from './../models/index.js'
 
 class UserController {
   async createUser(req, res, next) {
@@ -62,4 +62,4 @@ class UserController {
   }
 }
 
-module.exports = new UserController()
+export default new UserController()

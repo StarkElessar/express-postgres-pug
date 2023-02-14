@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken')
+import jwt from 'jsonwebtoken'
 
 const generateJwt = (id, email, login, role) =>
   jwt.sign(
@@ -7,4 +7,4 @@ const generateJwt = (id, email, login, role) =>
     { expiresIn: '24h' }
   )
 
-module.exports = generateJwt
+export default generateJwt
