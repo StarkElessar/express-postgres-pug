@@ -63,22 +63,9 @@ export const webpackConfig = {
     ],
   },
 
-  resolve: {
-    extensions: ['.js', '.mjs'],
-  },
-
-  experiments: {
-    outputModule: true,
-  },
-
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    // new FileManagerPlugin({
-    //   events: {
-    //     onStart: { delete: ['public'] },
-    //   },
-    // }),
     new MiniCss({
       filename: 'styles.css'
     }),
